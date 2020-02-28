@@ -117,14 +117,14 @@ class Game:
                             snake.direction = direction
 
             snake.move()
-            head = snake.body[0]
+            head, *tail = snake.body
 
-            if head not in self.board or head in snake.body[1:]:
+            if head not in self.board or head in tail:
                 self.DIE_SOUND.play()
                 time.sleep(1)
                 return points
 
-            if food.position == head:
+            if head == food.position:
                 self.EAT_SOUND.play()
                 points += 1
                 snake.extend += 1
